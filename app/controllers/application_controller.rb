@@ -36,7 +36,14 @@ class ApplicationController < ActionController::Base
   end
 
   def texto
-
+  	require 'open-uri'
+  	web_contents  = open('https://s3.amazonaws.com/files.principal/texto.txt') {|f| f.read }
+  	
+  	sha256 = Digest::SHA256.new
+	digest = sha256.hexdigest web_contents
+	texto_en_pagina= web_contents.force_encoding('ISO-8859-1')
+	render json: {:text=> texto_en_pagina, :hash => digest}
+	#render json: {:text=> web_contents.to_str, :hash=> digest}
   	
   end
 

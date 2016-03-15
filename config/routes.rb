@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-    root 'application#validar'
+    root 'application#status'
 
      match '/validarFirma' => 'application#validar', via: :post
      match '/status' => 'application#status', via: :get
+     match '/texto' => 'application#texto', via: :get
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
