@@ -4,15 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def validar
-    render text: "Thanks for sending a POST request with cURL! Payload: #{request.body.read}"
+    render plain: params
   end
 
   def status
-  respond_to do |format|
-    format.html{ render text: "Status"}
-    format.xml { render xml: @people }
-  end
-  	
+  render status: 201, json: @controller.to_json
+  #respond_to do |format|
+   # format.html{ render status: :not_found }
+    #format.xml { render xml: @people }
+  #end
   end
 
 end
