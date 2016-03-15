@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 	digest = sha256.hexdigest mensaje
 
 
-		if((mensaje.is_a? String| | Base64.isBase64(String mensaje)) && (hash.is_a? String) && mensaje != nil && hash != nil)
+		if((mensaje.is_a? String|| Base64.isBase64(String mensaje)) && (hash.is_a? String) && mensaje != nil && hash != nil)
 			if (hash==digest)
 				#render text: request.body.read
 		    	render json: {:mensaje=> mensaje, :valido=> true}
