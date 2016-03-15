@@ -4,7 +4,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def validar
-    render text: "hello, world!"
+    render text: "Thanks for sending a POST request with cURL! Payload: #{request.body.read}"
+  end
+
+  def status
+  respond_to do |format|
+    format.html{ render text: "Status"}
+    format.xml { render xml: @people }
+  end
+  	
   end
 
 end

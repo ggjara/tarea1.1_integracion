@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
     root 'application#validar'
 
+     match '/validarFirma' => 'application#validar', via: :post
+     match '/status' => 'application#status', via: :get
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
