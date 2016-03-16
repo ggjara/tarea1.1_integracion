@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   	
   	sha256 = Digest::SHA256.new
 	digest = sha256.hexdigest web_contents
-	texto_en_pagina= web_contents.force_encoding('ISO-8859-1')
+	texto_en_pagina= web_contents.force_encoding('utf-8')
 	render json: {:text=> texto_en_pagina, :hash => digest}
 	#render json: {:text=> web_contents.to_str, :hash=> digest}
   	
