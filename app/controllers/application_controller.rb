@@ -5,11 +5,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def validar
-  	mensaje = params[:mensaje]
-  	hash = params[:hash].downcase
+	if( !(params[:mensaje].present?) || !(params[:hash].present?))
+		render status: 400, json: @controller.to_json
+	else
+    mensaje = params[:mensaje]
+    hash = params[:hash].downcase
 
-  	sha256 = Digest::SHA256.new
-	digest = sha256.hexdigest mensaje
+    sha256 = Digest::SHA256.new
+    digest = sha256.hexdigest mensaje
 
 
 		if((mensaje.is_a? String|| Base64.isBase64(String mensaje)) && (hash.is_a? String) && mensaje != nil && hash != nil)
@@ -22,6 +25,7 @@ class ApplicationController < ActionController::Base
 		else
 			render status: 400, json: @controller.to_json
 		end
+	end
 
      #render text: "Thanks for sending a POST request with cURL! Payload: #{request.body.read}"
   end
